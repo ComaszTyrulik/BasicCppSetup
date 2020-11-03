@@ -1,6 +1,6 @@
 # Basic Cpp Setup
 This repository contains basic C++ project configuration.
-I use it for @BeastEngine development and I wanted to have a basic startup for different C++ projects.
+I use it for [BeastEngine](https://github.com/BeastEngine/BeastEngine) development and I wanted to have a basic startup for different C++ projects.
 
 ## Content
 The basic setup contains CMake and Conan files with a few dependencies.
