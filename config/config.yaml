@@ -1,11 +1,11 @@
 cmake_config:
   build_directory_name: build
-  directory_name: cmake/config # Relative to the project path specified in scripts_config.yaml
-  config_files: # Relative to the above directory_name cmake config directory
+  directory_name: cmake/config
+  config_files:
     dist_filename: config.cmake.dist
-    filename: config.cmake # This file will be created from the above, dist one
+    filename: config.cmake
   project:
-    name: BasicCppSetup # This will be the value of the project name variable inside basic CMakeLists.txt file
+    name: BasicCppSetup
     version_major: '0'
     version_minor: '0'
     version_patch: '1'
