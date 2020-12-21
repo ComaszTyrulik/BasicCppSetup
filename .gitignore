@@ -373,3 +373,5 @@ cmake/config/**/config.cmake
 cmake/config/config.cmake
 cmake/config/**/*_vars.txt
 cmake/config/**/vars.txt
+
+beast.bat
