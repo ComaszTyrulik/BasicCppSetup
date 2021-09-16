@@ -1,7 +1,7 @@
 from conans import ConanFile, CMake
 
 
-class BeastEngine(ConanFile):
+class ScrapChildEditor(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    requires = "spdlog/[>=1.4.2]", "gtest/[>=1.8.1]", "glm/0.9.9.8"
+    requires = "spdlog/[>=1.4.2]", "gtest/[>=1.8.1]", "stduuid/1.0"
     generators = "cmake"
