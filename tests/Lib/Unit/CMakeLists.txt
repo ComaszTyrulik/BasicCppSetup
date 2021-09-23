@@ -26,10 +26,7 @@ target_link_libraries(
 	${LIB_TESTS_UNIT_TARGET_NAME}
 	PRIVATE
 		CONAN_PKG::gtest
-		CONAN_PKG::stduuid
-		CONAN_PKG::spdlog
 		CPS::lib
-		CPS::vendor_xxhash
 )
 
 set_compiler_options(${LIB_TESTS_UNIT_TARGET_NAME})

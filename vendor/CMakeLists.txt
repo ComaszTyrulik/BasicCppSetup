@@ -1,1 +1,1 @@
-add_subdirectory(XxHash)
+add_subdirectory(ComaszTyrulik)

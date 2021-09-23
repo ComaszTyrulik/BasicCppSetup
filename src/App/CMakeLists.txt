@@ -24,7 +24,6 @@ target_link_libraries(
 	${APP_TARGET_NAME}
 	PRIVATE
 		CPS::lib
-		CPS::vendor_xxhash
 )
 
 set_compiler_options(${APP_TARGET_NAME})

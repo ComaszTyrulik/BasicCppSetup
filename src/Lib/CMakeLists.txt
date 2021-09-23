@@ -20,8 +20,7 @@ target_link_libraries(
 	${LIB_TARGET_NAME}
 	PRIVATE
 		CONAN_PKG::spdlog
-        CONAN_PKG::stduuid
-		CPS::vendor_xxhash
+		CT::common_utils
 )
 
 set_compiler_options(${LIB_TARGET_NAME})
