@@ -516,6 +516,45 @@ run.bat cmake configure -DBUILD_UNIT_TESTS=OFF -DBUILD_INTEGRATION_TESTS=ON
 ___
 > NOTE: All of the scripts are here only to help with files management, but the `CMake` project does not depend on those scripts in any way. This means that you can get rid of the scripts if you don't need them, and simply use the `CMake` project template with your set of tools.
 
+
+### Additional Commands
+Sometimes you might want to execute `CMake` or `Conan` commands that are not explicitly supported by the scripts. For example `conan search`. Because all dependencies are installed inside the python's virtual environment you have to initialize the virtual env first and then run the commands.
+
+`BasicCppSetup` comes with the script that allows you to execute your command straight from the virtual environment without a need to manage it automatically.
+All you have to do is run (from the root of the repository):
+
+```
+scripts\run_env_cmd.bat *your_argument*
+```
+
+For example, running:
+
+```
+scripts\run_env_cmd.bat conan search fmt --remote=conancenter
+```
+gives me the following result:
+
+```
+Existing package recipes:
+
+fmt/5.3.0
+fmt/6.0.0
+fmt/6.1.0
+fmt/6.1.1
+fmt/6.1.2
+fmt/6.2.0
+fmt/6.2.1
+fmt/7.0.1
+fmt/7.0.2
+fmt/7.0.3
+fmt/7.1.0
+fmt/7.1.1
+fmt/7.1.2
+fmt/7.1.3
+fmt/8.0.0
+fmt/8.0.1
+```
+
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.
 
