@@ -21,17 +21,14 @@
 	    <li>
 	        <a href="#about-the-project">About The Project</a>
 	        <ul>
-	            <li><a href="#built-with">Built With</a></li>
-	        </ul>
-	        <ul>
 	            <li><a href="#motivation">Motivation</a></li>
 	        </ul>
 	        <ul>
 	            <li>
 	                <a href="#how-it-works">How It Works</a>
 	                <ul>
-	                    <li><a href="#scripts_config.yaml">scripts_config.yaml</a></li>
-	                    <li><a href="#config.yaml">config.yaml</a></li>
+	                    <li><a href="#scripts_configyaml">scripts_config.yaml</a></li>
+	                    <li><a href="#configyaml">config.yaml</a></li>
 	                </ul>
 	            </li>
 	        </ul>
@@ -46,6 +43,7 @@
 	        <a href="#getting-started">Getting Started</a>
 	        <ul>
 	            <li><a href="#prerequisites">Prerequisites</a></li>
+	            <li><a href="#installation">Installation</a></li>
 	        </ul>
 	    </li>
 	    <li><a href="#usage">Usage</a></li>
@@ -153,7 +151,7 @@ They are used as follows:
  - `cmake/` - contains targets and general config files, and `functions.cmake` file, which contains definitions for custom functions
  - `conan/` - contains `conanfile.py` and automatically created `build` directory where all additional conan files are placed. In short, it contains all `conan` related data
  - `config/`
-	 + `config.yaml` - This file contains project configuration used by project scripts. More about it [here](#config.yaml)
+	 + `config.yaml` - This file contains project configuration used by project scripts. More about it [here](#configyaml)
  - `include/` - directory for all of the include files. Generally, it contains all of the `*.h` files
 	 + `Lib/` - contains all includes of the `Lib` target
  - `scripts/` - contains all configuration scripts
@@ -471,7 +469,7 @@ The `source` commans allows you to modify only sources.
 
 The `class` command allows you to modify both headers and sources. It also uses files templates defined in [here](scripts/config/) to create new classes.
 
-> NOTE: This command accepts `<target>` as its first argument. This must be one of the targets defined in the [`config/config.yaml`](#config.yaml) file.
+> NOTE: This command accepts `<target>` as its first argument. This must be one of the targets defined in the [`config/config.yaml`](#configyaml) file.
 
 The example usage of this command might look like this:
 
@@ -491,7 +489,7 @@ scriptsConfig['project_path']/targetConfig['sources']['base_dir']/MyDirectory/My
 
 It will also modify `CMake` variables so that both `MyClass.h` and `MyClass.cpp` are included both in the `IDE` and in the build process.
 
-> NOTE: When modifying target's files, remember to use paths relative to the target's headers/sources `base_dir` defined in the [`config/config.yaml`](#config.yaml) file.
+> NOTE: When modifying target's files, remember to use paths relative to the target's headers/sources `base_dir` defined in the [`config/config.yaml`](#configyaml) file.
 
 ### Config Command
 The `config` command is used to perform operation on project configuration. Currently, it can only be used to retrieve the list of targets defined in the `config.yaml` file.
