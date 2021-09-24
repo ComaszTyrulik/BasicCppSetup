@@ -9,7 +9,7 @@ namespace cps
     {
         spdlog::info("Hello Basic Cpp Project!");
 
-        auto idGenerator = ct::UuId4Generator();
+        const auto idGenerator = cps::UuId4Generator();
         spdlog::info("New UUID generated {} from CommonUtilities!", idGenerator.Generate());
     }
 } // namespace cps

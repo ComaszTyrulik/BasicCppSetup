@@ -514,7 +514,7 @@ run.bat cmake configure -DBUILD_UNIT_TESTS=OFF -DBUILD_INTEGRATION_TESTS=ON
 ```
 
 ___
-> NOTE: All of the scripts are here only to help with files management, but the `CMake` project does not depend on those scripts in any way. This means, that you can get rid of the scripts if you don't need it, and simply use the `CMake` project template with your set of tools.
+> NOTE: All of the scripts are here only to help with files management, but the `CMake` project does not depend on those scripts in any way. This means that you can get rid of the scripts if you don't need them, and simply use the `CMake` project template with your set of tools.
 
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.
