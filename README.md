@@ -6,10 +6,10 @@
 <br />
 <p align="center">
   <a href="#">
-    <img src="https://github.com/PerfectLoop-GS/ScrapChild-StoryEditor/blob/develop/resources/images/robot.png" alt="Logo" width="80" height="80">
+    <img src="docs/resources/setup.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Scrap Child - StoryEditor</h3>
+  <h3 align="center">BasicCppSetup</h3>
 </p>
 
 
@@ -18,33 +18,39 @@
 <details open="open">
 	<summary>Table of Contents</summary>
 	<ol>
-		<li>
-			<a href="#about-the-project">About The Project</a>
-			<ul>
-				<li><a href="#built-with">Built With</a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="#supported-platforms">Supported Platforms
-		</li>
-		<li>
-			<a href="#getting-started">Getting Started</a>
-			<ul>
-				<li><a href="#prerequisites">Prerequisites</a></li>
-				<li><a href="#additional-useful-software">Additional Useful Software</a></li>
-				<li><a href="#installation">Installation</a></li>
-			</ul>
-		</li>
-		<li><a href="#usage">Usage</a></li>
-		<li><a href="#roadmap">Roadmap</a></li>
-		<li>
-			<a href="#contributing">Contributing</a>
-			<ul>
-				<li><a href="#coding-standards">Coding Standards</a></li>
-			</ul>
-		</li>
-		<li><a href="#license">License</a></li>
-		<li><a href="#acknowledgements">Acknowledgements</a></li>
+	    <li>
+	        <a href="#about-the-project">About The Project</a>
+	        <ul>
+	            <li><a href="#built-with">Built With</a></li>
+	        </ul>
+	        <ul>
+	            <li><a href="#motivation">Motivation</a></li>
+	        </ul>
+	        <ul>
+	            <li>
+	                <a href="#how-it-works">How It Works</a>
+	                <ul>
+	                    <li><a href="#scripts_config.yaml">scripts_config.yaml</a></li>
+	                    <li><a href="#config.yaml">config.yaml</a></li>
+	                </ul>
+	            </li>
+	        </ul>
+	        <ul>
+	            <li><a href="#contents">Contents</a></li>
+	        </ul>
+	        <ul>
+	            <li><a href="#supported-platforms">Supported Platforms</a></li>
+	        </ul>
+	    </li>
+	    <li>
+	        <a href="#getting-started">Getting Started</a>
+	        <ul>
+	            <li><a href="#prerequisites">Prerequisites</a></li>
+	        </ul>
+	    </li>
+	    <li><a href="#usage">Usage</a></li>
+	    <li><a href="#license">License</a></li>
+	    <li><a href="#acknowledgements">Acknowledgements</a></li>
 	</ol>
 </details>
 
@@ -53,173 +59,142 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This repository contains the *StoryEditor* which is a program used to create and edit stories for the [Scrap Child game]().
+This repository contains a basic template for new projects with `C++17`, `CMake` and `Conan`.
 
-### Built With
-* [C++17](https://en.cppreference.com/w/cpp/17)
-* [Dear ImGui](https://github.com/ocornut/imgui)
+### Motivation
+I had to deal with a lot of boilerplate when creating new C++ projects, and wanted to have all of it predefined. Moreover, I needed a way to easily manage project files in `CMake` and `Visual Studio`. I struggled a lot with Visual Studio's CMake support and couldn't get to work adding new files under right directories and updating files lists in `CMakeLists.txt` files at the same time.
+So, I created a bunch of scripts which allow to quickly add/move/delete files from correct directories while keeping in synch both IDE's and CMake's files lists.
 
-### Supported Platforms
-Currently the Editor supports
 
- - Windows 7+
+### How it works
+Project is split in two parts - CMake and Scripts.
+CMake part consists of all the `CMakeLists.txt` files, targets definitions, etc. Basically, the same stuff you would normally do for a CMake project.
 
-<!-- GETTING STARTED -->
-## Getting Started
+The center part of the scripts part are two files. The `scripts/config/scripts_config.yaml` and the `config/config.yaml` file. As their names imply, they contain scripts configuration.
 
-This section contains all required information to get you up and running on the Editor's development.
+### scripts_config.yaml
+This file contains absolute paths to the important files and directories for the scripts.
+The file itself and all its content are defined when [initializing the project](#installation). This means, this file is not included in the repository and stores information related to the machine the scripts operate on.
 
-### Prerequisites
+The `scripts_config.yaml` file is based on the `scripts_config.yaml.dist` which is included in the repository and has the following structure:
 
-#### [CMake](https://cmake.org/)
-StoryEditor uses CMake to configure and build the project's source files.
-You can download CMake source files or/and binaries from [here](https://cmake.org/download/).
-Minimum required version is `3.16`.
-
-If you're going to build the project from terminal, make sure to add CMake to your `PATH`
-
-#### [Python](https://www.python.org/downloads/)
-StoryEditor uses [project scripts](https://github.com/PerfectLoop-GS/ScrapChild-Editor-Scripts) written in python. They allow easy files and classes creation. `Python 3.8` is a minimum required version.
-Make sure to add Python to your `PATH`.
-
-#### [Conan](https://conan.io/)
-StoryEditor uses Conan to manage C++ dependcies.
-
-You can install Conan by running (prefered):
-
-```python
-pip install conan
+```yaml
+build_dir_path:
+config_path:
+project_path:
 ```
 
-You can also install it via one of the download links provided [here](https://conan.io/downloads.html).
-
-Make sure to add Conan to your `PATH`.
-
-#### C++ 17 Compatible Compiler
-StoryEditor requires `C++ 17` enabled in order to compile all of the source code. Make sure to install the compiler with C++ 17 support.
-
-If you're using [Visual Studio 2019](https://visualstudio.microsoft.com/pl/vs/community/) you most likely already have a valid compiler.
-
-#### [Git](https://git-scm.com/)
-You can download the latest version from [here](https://git-scm.com/downloads)
-
-### Additional Useful Software
-##### VS Extensions and Configuration
-Get the [Doxygen Comments extension](https://marketplace.visualstudio.com/items?itemName=FinnGegenmantel.doxygenComments) to easly create doxygen comments for classes, methods and functions.
-
-Install [Google Test Adapter extension](https://marketplace.visualstudio.com/items?itemName=ChristianSoltenborn.GoogleTestAdapter) or install built-in Google Test Adapter provided with Visual Studio installation (make sure to check the Google Test Adapter option during Visual Studio installation).
-
-In Visual Studio, go to `Tools > Options > Text Editor > C/C++ > Code Style > Formatting > General` (You can also search for the `clang` option in the options search bar) and check the `Enable ClangFormat support` option as well as the `Run ClangFormat for all formatting scenarios` option. This will tell Visual Studio to automatically format the code according to the provided `.clang-format` file. You can also manually trigger the code formating by pressing the `Ctrl + K + D`.
-
-### Installation
-The following contains a list of steps required to properly install the project.
-
-##### Windows
-
-1. Clone the repository
-	
-	```
-	git clone https://github.com/PerfectLoop-GS/ScrapChild-StoryEditor.git
-	```
-2. Cd into project folder
-
-	```
-	cd ScrapChild-StoryEditor
-	```
-3. Run installation scripts:
-	
-	```
-	init.bat
-	```  
-This will download submodules, install python's virtual environment, install required `Conan` dependencies and configure `CMake` project. It will ask you for the project base directory, project's config directory and project's build directory. If you run the command from your project's base directory, you can leave the aforementioned options empty and the correct default ones will be used.
-  
-  This will also create the `run.bat` file in your project's base directory. You can use it to run development scripts.
-
-4. Open the `CMakeLists.txt` file with your favourite `IDE` or if you prefer using `Visual Studio's Solution`, go to `build` directory and open `ScrapChildEditor.sln`
-
-## Usage
-
-To be filled
+ - `build_dir_path` - this is the absolute path to CMake build directory
+ - `config_path` - absolute path to the `config.yaml` file. Note, that by default, this file is stored under the `*repository_main_dir*/config/config.yaml` path, but it can be placed in different place too
+ - `project_path` - absolute path to the main directory of the repository. Eg. if you clone this repository into the `C:/Projects/BasicCppSetup`, you must set this variable to `C:/Projects/BasicCppSetup`. This is very important, because all [commands](#usage) will be executed relative to this path
 
 
-## Roadmap
+### config.yaml
+This file contains the configuration of the project.
 
-See the [open issues](https://trello.com/b/vIsC8fZq/scrapchildeditor) for a list of proposed features (and known issues).
+Here's the example of this file:
 
-
-## Contributing
-
-In order to contribute to the Editor's code, you should follow the following steps
-
-1. In your local repository, checkout to branch `develop` and download the latest changes:
-
-	`git checkout develop && git fetch && git pull origin develop`
-	
-2. Create your branch. Go to the [issues board](https://trello.com/b/vIsC8fZq/scrapchildeditor), select the ticket and copy its id from the URL.  
-Execute
-	Feature branch:
-	
-	`git checkout -b fe-id-what-this-branch-contains`
-	
-	For bug branch:
-	
-	`git checkout -b bu-id-what-this-branch-contains`
-	
-	For hotfix branch:
-	
-	`git checkout -b hi-id-what-this-branch-contains`
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`). Make sure to make the commit message meaningful. It should describe its contents
-4. Push branch to the repository (`git push origin fe-id-what-this-branch-contains`)
-5. Checkout to `develop` and update it locally (`git checkout develop && git fetch && git pull origin develop)`
-6. Go back to your branch and rebase it to `develop` (`git checkout fe-id-what-this-branch-contains` and then `git rebase develop`)
-7. Fix merge conflicts if there are any
-8. Push your updated branch to the repository (`git push origin fe-id-what-this-branch-contains --force-with-lease`)
-9. Open a Pull Request to merge your branch into the `develop` (or other if your branch originated from different branch)
-
-### Managing Files
-You can use [python project scripts](https://github.com/PerfectLoop-GS/ScrapChild-Editor-Scripts) to add, rename and delete `C++` files, classes, interfaces and `google test` classes.
-For the list of available commands, you can run:
-
-```
-run.bat -h
-```  
-Currently available commands are:
-
-```
-usage: <command> [<args>]
-
-This program let's you manage project's targets' files.
-
-Available commands
- header     Add/Remove/Rename header files
- source     Add/Remove/Rename source files
- class      Add/Remove/Rename header and source files at the same time
- config     Performs operations on config
- conan      installs project dependency using conan
- cmake      runs CMake configuration command
-
-Type "<command> --help" for more information on a specific command
-
-positional arguments:
-  <command>   command to execute
-
-optional arguments:
-  -h, --help  show this help message and exit
+```yaml
+conan:
+  file_path: conan/conanfile.py
+  build_dir: conan/build
+targets:
+  lib:
+    tests: false
+    namespace: cps
+    headers:
+      base_dir: include/Lib
+      cmake_variable_file: src/Lib/CMakeLists.txt
+      cmake_variable_name: LIB_HEADERS_LIST
+    sources:
+      base_dir: src/Lib
+      cmake_variable_file: src/Lib/CMakeLists.txt
+      cmake_variable_name: LIB_SRC_LIST
 ```
 
-Any of the files related commands will also automatically modify the appropriate target's `CMakeLists.txt` file and run `cmake -S . -B build` command, so that all of the changes are instantly visible inside the `IDE`.
+ - `conan` - it contains all conan-related definitions
+	 + `file_path` - defines path to the `conanfile.py` file
+	 + `build_dir` - path to the directory where all local, conan releated files will be placed
+ - `targets` - this is the most important element of the file. It contains a list of all CMake targets whose files can be modified by the scripts. For each target you have to define the following:
+	 + `tests` - tell scripts if the target contains tests. This flag is used when creating new classes. If true, new file will be created from the [`test_template`](scripts/config/test_template.h) and if false, new file will be created from the [`class_template`](scripts/config/class_template.h)
+	 + `namespace` - new classes and interfaces will be created within this namespace, unless you explicitly state otherwise when creating new files from a terminal. (See [commands](#usage))
+	 + `headers`
+		 * `base_dir` - base directory of all `*.h` files of this target
+		 * `cmake_variable_file` - when adding/moving/deleting files, scripts must modify the list of header files, the CMake target will build. This field defines where to search for that list
+		 * `cmake_variable_name` - this defines the name of the variable which stores the aforementioned list. Scripts will be looking for `set({cmake_varialbe_name} *list of files*)` variable inside the `cmake_variable_file`.
+	 + `sources` - it contains exactly the same fields as the `headers` field. The only difference is that these values reference `base_dir`, `cmake_variable_file` and `cmake_variable_name` for the source (`*.cpp`) files of the target
 
-### Coding Standards
-The project uses [clang format](https://clang.llvm.org/docs/ClangFormatStyleOptions.html) for dictating code formatting. You can check out the above link for more information about clang-format's configurable options.
+Note that all paths defined in this file are relative. That's because the `config.yaml` file is part of the repository and shouldn't contain any local specific information. All of the paths are created based on the project's absolute path defined in the `scripts_config.yaml` file.
 
-Here is a code example demonstrating most of the coding standards:
+For example, the full path to the base directory of a target's source files is created like this:
+```
+scriptsConfig['project_path']/targetConfig['sources']['base_dir']
+```
 
-```C++
+### Contents
+`BasicCppSetup` consists of the following elements:
+
+ - Directories structure
+ - Base `CMakeLists.txt`
+ - Single `exe` target
+ - Single `static lib` target
+ - Single unit and integration tests targets for `Lib` target
+ - [CommonUtilities](https://github.com/ComaszTyrulik/CommonUtilities) as submodule
+ - [conanfile](https://docs.conan.io/en/latest/reference/conanfile.html)
+ - Project management scripts
+ - Extended `.gitignore`
+ - [Doxyfile](https://www.doxygen.nl/manual/starting.html) file
+ - [.clang-format](https://clang.llvm.org/docs/ClangFormat.html) file
+
+### Directories Structure
+This repository comes with the predefined directories structure for your C++ project.
+They are used as follows:
+
+ - `cmake/` - contains targets and general config files, and `functions.cmake` file, which contains definitions for custom functions
+ - `conan/` - contains `conanfile.py` and automatically created `build` directory where all additional conan files are placed. In short, it contains all `conan` related data
+ - `config/`
+	 + `config.yaml` - This file contains project configuration used by project scripts. More about it [here](#config.yaml)
+ - `include/` - directory for all of the include files. Generally, it contains all of the `*.h` files
+	 + `Lib/` - contains all includes of the `Lib` target
+ - `scripts/` - contains all configuration scripts
+ - `src/` - directory for all of the sources. Generally, it contains all of the `*.cpp` files
+	 + `App/` - contains all source files of the `App` target
+	 + `Lib/` - contains all source files of the `Lib` target
+ - `tests/` - contains tests for targets
+	 + `Lib/` - contains all tests (both unit and integration) for `Lib` target
+		 * `Integration/`
+		 * `Unit`
+ - `vendor/` - contains all dependencies that cannot  be optained via `conan`
+
+### CMake Project
+The `BasicCppSetup` comes with the CMake project ready to use. It defines one target for executable, one target for static library and two targets for testing the library.
+
+The main `CMakeLists.txt` configures the project and includes vendors and sources.
+It also defines the startup project for `Visual Studio`.
+
+Additionally, it defines a few options that can be set via teminal.
+
+
+| Name | Default|Description|
+|------|--------|-----------|
+|`BUILD_TEST`|ON|Tells CMake whether test targets should be included in the project or not.|
+|`BUILD_UNIT_TESTS`|ON|Tells CMake whether unit test should be built. This flag is used by the `tests/CMakeLists.txt` file to determine which test targets include in the project.|
+|`BUILD_INTEGRATION_TESTS`|ON|The same as the `BUILD_UNIT_TESTS` but concerns integration tests.|
+|`GROUP_FILES_SEPARATE`|OFF|(Only tested with `Visual Studio`) source and header files can be presented in two ways in the `IDE`. They can all be groupped together and placed under the `Code/` directory or split into `Sources` and `Headers` directories. By default, all files are groupped together. **NOTE:** you may have to delete the `build/CMakeCache.txt` or recreate the entire `build` directory after changing the option in order for this option to work.|
+
+### Clang Format
+`BasicCppSetup` contains `.clang-format` file which is used to enforce coding standards.
+Here's an example of `BasicCppSetup` code format:
+
+```c++
 #include "LocalInclude1.h"
 #include "LocalInclude2.h"
 
 #include <OtherTargetsInclude1.h>
 #include <OtherTargetsInclude2.h>
+
+#include <spdlog/spdlog.h>
+#include <fmt/format.h>
 
 #include <algorithm>
 #include <cstdlib>
@@ -227,8 +202,6 @@ Here is a code example demonstrating most of the coding standards:
 #include <functional>
 #include <iostream>
 #include <iterator>
-#include <spdlog/spdlog.h>
-#include <fmt/format.h>
 
 #define BIT_MASK 0xDEADBEAF
 
@@ -242,24 +215,19 @@ Here is a code example demonstrating most of the coding standards:
 
 namespace LevelOneNamespace::LevelTwoNamespace
 {
-    /**
-     * @brief Interface description
-     */
     class ITestInterface
     {
     public:
         virtual ~ITestInterface() = default;
 
         /**
-         * @brief Description of virtual method.
+         * Description of virtual method.
          */
-        virtual void VirtualMethod1() = 0;
+        virtual void VirtualMetod1() = 0;
 
         /**
-         * @brief Description of virtual method with params.
+         * Description of virtual method with params.
          * 
-         * @see VirtualMethod1()
-         *
          * @param value - describes value
          * @param otherValue - describes other value
          * @return some value
@@ -267,9 +235,6 @@ namespace LevelOneNamespace::LevelTwoNamespace
         virtual int VirtualMethod2(int value, const char* otherValue) const = 0;
     };
 
-    /**
-     * @brief Class description
-     */
     class TestBase
     {
     public:
@@ -291,9 +256,6 @@ namespace LevelOneNamespace::LevelTwoNamespace
         int m_privateMember = 1;
     };
 
-    /**
-     * @brief Class description
-     */
     class TestChildClass final : public TestBase, public ITestInterface
     {
     public:
@@ -309,7 +271,7 @@ namespace LevelOneNamespace::LevelTwoNamespace
         TestChildClass& operator=(const TestChildClass&) noexcept = default;
         TestChildClass& operator=(TestChildClass&&) noexcept = default;
 
-        void VirtualMethod1() override;
+        void VirtualMetod1() override;
         int VirtualMethod2(int value, const char* otherValue) const override;
 
     private:
@@ -398,108 +360,162 @@ int main(int argc, char** argv)
     return 0;
 }
 ```
+Note that you can modify the `.clang-format` file to your needs using [this](https://clang.llvm.org/docs/ClangFormatStyleOptions.html) reference.
 
-Additionaly, below you can find information about things not covered by the above example.
+### Supported Platforms
+Currently, the project has only been built and tested on:
 
-### Cross-DLL API
-In order to pass code safely between two DLLs, use C-style API which doesn't return any C++ specific objects (an exception to this rule are interfaces/pure abstract classes).
-The C functions should have the following format:
+ - Windows 10
 
-```C++
-// If function returns values and can fail:
-EnumContainingErrorCodes FunctionName(Type1 someInParameter1, Type1 someInParameter, Type3* outParamToStoreReturnValue);
- 
-// If function returns values but can't fail:
-void FunctionName(Type* outParamToStoreReturnValue);
+<!-- GETTING STARTED -->
+## Getting Started
+This section contains all required information to get you up and running.
 
-// If function doesn't return values but can fail:
-EnumContainingErrorCodes FunctionName(*ListOfInputParameters*);
+### Prerequisites
+Project scripts use Python virtual environment and install all dependencies there. Because of this, the only required thing to install is [Python](https://www.python.org/downloads/). The minimum required version is `3.8`. When installing python, make sure to add it to your `PATH`.
 
-// If funttion doesn't return values and can't fail:
-void FunctionName(*ListOfIntpuParameters*);
-```
-Also, keep in mind that `C-Style` APIs should be marked as `extern "C"`:
+To make sure python is added to `PATH`, open your favorite terminal and type
 
-`extern "C" void MyFunction();`
-
-or, if multiple functions are placed inside the file:
-
-```C++
-extern "C"
-{
-    void MyFunction1();
-    void MyFunction2();
-}
+```shell
+python --version
 ```
 
-### Error Handling
-Use exceptions to inform about wrong behavior when following applies:
+### Installation
+Once you have installed all prerequisites, you are good to go with project installation.
 
- - if the error is fatal and should stop the execution of the program (you can use exception in other cases to, but make sure to catch them in a proper place to allow program execution continuance)
+ > NOTE: This repository is meant to be used as a template, so we'll assume that you have created a new repository called `MyProject` based on this template, and that you are executing all the commands for your repository.
 
-`DO NOT` use exceptions if the following applies:
+**Windows**
 
- - if encountered error isn't fatal.
- - in cross-dll Api functions. Use return value to indicate success/failure.
+1. Clone the repository
+	
+	```
+	git clone https://github.com/MyAccount/MyProject.git
+	```
+2. Cd into project folder
 
-### Naming Convensions
-#### In Code
-As shown in the example, use the [PascalCase (Upper Camel Case)](https://en.wikipedia.org/wiki/Camel_case) for class, structs and custom types (except aliases for the standard types like `using uint = unsigned int`) names, as well as for methods and function names.
+	```
+	cd MyProject
+	```
+3. Run installation scripts:
+	
+	```
+	init.bat
+	```  
+This will download submodules, install python's virtual environment, install required `Conan` dependencies and configure `CMake` project. This is also the step where you can pass all `CMake` options you would like to set, for example `-DBUILD_TESTS=OFF`. They will be automatically forwarded to `CMake`.
 
-Use upper case letters separated by underscore `_` for `constexpr` variables and macros.
+The command will ask you for the project base directory, project's config directory and project's build directory. If you run the command from your project's base directory, you can leave the aforementioned options empty and correct default ones will be used.
 
-Use [camelCase (Lower Camel Case)](https://en.wikipedia.org/wiki/Camel_case) for variables.
+> NOTE: You you run the script from explorer and not from the terminal, make sure to NOT close the `cmd` window and wait for the script to finish executing. The `cmd` window should close automatically once the script is done.
+  
+This comman will also create the `run.bat` file in your project's base directory. You can use it to [run development scripts](#usage).
 
-**Prefixes**
+## Usage
+After [initializing the project](#installation), you should have the `run.*` (the extension depends on the platform you're on. I will assume `Windows` in the following section).
 
-Do not use prefixes for `protected` or `private` methods. Prefix private data members with `m_` prefix.
+This script is an entry point for all project related commands. To see the list of available commands, run:
 
-#### Files and Directories
-Files and Directories should be written with [PascalCase (Upper Camel Case)](https://en.wikipedia.org/wiki/Camel_case). The exception to this rule can be a `main.cpp` file.
-
-### Comments
-
-#### In-code comments
-Limit the use of comments to the places where you see fit. Mark uncertainty with comments. Try to use explicit variables and functions names instead of comments.
-
-There are, however, places where comments are required:
-
- - Regex patterns - mark a reggex pattern with a short comment describing its purpose
- 
-#### Doxygen comments
-Use doxygen comments `/** @brief comment goes here */` on interfaces' methods and methods' declarations. These comments should contain description of how to use the method, what the caller should be aware of, etc.
-
-Additionally, use comments to describe interface and classes. If you find class without documentation, try to add a doc block.
-
-DO NOT add doxygen comments to methods definitions, because these comments should provide a help for methods users.
- 
-### Magic Numbers
-Do not use magic numbers. Instead, put them inside `constexpr` members.
-
-```C++
-// bad
-if (value > 69)
-{
-    // Do something
-}
-
-...
-
-// good
-constexpr unsigned int MEANINGFUL_THRESHOLD_NAME = 69;
-...
-if (value > MEANINGFUL_THRESHOLD_NAME)
-{
-    // Do something
-
-}
+```
+run.bat -h
 ```
 
-### Others
-Other than that, follow the [official C++ Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) whenever possible.
+Here's the snapshot of the currently available commands:
+
+```
+usage: run <command> [<args>][-h|--help]
+
+This program let's you manage project's config and targets
+as well as running cmake and conan functions.
+
+Available commands
+ target     Performs operations on targets
+ config     Performs operations on config
+ conan      Installs project dependency using conan
+ cmake      Runs CMake configuration command
+
+positional arguments:
+  <command>   command to execute
+
+optional arguments:
+  -h, --help  show this help message and exit
+```
+
+### Target Command
+The `target` command is used to manage `CMake` targets' data. It's main purpose is to modify target's header and source files.
+
+```
+usage: run target <target> <command> [<args>][-h|--help]
+
+Performs operations on selected target's files.
+
+Available commands
+ header     Add/Remove/Move header files
+ source     Add/Remove/Move source files
+ class      Add/Remove/Move header and source files at the same time
+
+For the list of available targets, execute:  run config --targets-list
+
+positional arguments:
+  <target>    target for which the files should be added
+  <command>   command to execute
+
+optional arguments:
+  -h, --help  show this help message and exit
+```
+
+You can add/remove/move headers, sources and classes.
+
+The `headers` command allows you to modify only headers. It also allows you to create new interfaces (pure virtual classes)
+
+The `source` commans allows you to modify only sources.
+
+The `class` command allows you to modify both headers and sources. It also uses files templates defined in [here](scripts/config/) to create new classes.
+
+> NOTE: This command accepts `<target>` as its first argument. This must be one of the targets defined in the [`config/config.yaml`](#config.yaml) file.
+
+The example usage of this command might look like this:
+
+```
+run.bat target lib class add MyDirectory/MyClass
+```
+
+This will result in creation of the new `MyClass.h` and `MyClass.cpp` files under:
+
+```
+# Header
+scriptsConfig['project_path']/targetConfig['headers']['base_dir']/MyDirectory/MyClass.h
+
+# Source
+scriptsConfig['project_path']/targetConfig['sources']['base_dir']/MyDirectory/MyClass.cpp
+```
+
+It will also modify `CMake` variables so that both `MyClass.h` and `MyClass.cpp` are included both in the `IDE` and in the build process.
+
+> NOTE: When modifying target's files, remember to use paths relative to the target's headers/sources `base_dir` defined in the [`config/config.yaml`](#config.yaml) file.
+
+### Config Command
+The `config` command is used to perform operation on project configuration. Currently, it can only be used to retrieve the list of targets defined in the `config.yaml` file.
+
+### Conan Command
+This command install `Conan` dependencies and doesn't accept any arguments. You should use it whenever you modify the `conanfile.py` file.
+
+### Cmake Command
+The `cmake` command is used to both configure `CMake` project and to build all targets.
+
+Command accepts one, **optional** argument which can be one of the two:
+
+ - configure - regenerates cmake files. It's the `cmake` command you run everytime, you change something in your `CMakeLists.txt` files.
+ - build - build all targets based on the configuration. This is an equvelant of running `cmake --build build`
+ 
+If no argument is provided, the command proceeds as if the `configure` argument was passed.
+
+Additionally, the `configure` argument can be provided with a list of `CMake` options in the form of `-D*NAME_OF_YOUR_OPTION*=*VALUE*`, eg:
+
+```
+run.bat cmake configure -DBUILD_UNIT_TESTS=OFF -DBUILD_INTEGRATION_TESTS=ON
+```
 
 ## License
-
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Acknowledgements
@@ -508,4 +524,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/PerfectLoop-GS/ScrapChild-StoryEditor/blob/master/LICENSE
+[license-url]: LICENSE
