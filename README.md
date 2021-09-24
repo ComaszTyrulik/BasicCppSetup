@@ -60,15 +60,15 @@
 This repository contains a basic template for new projects with `C++17`, `CMake` and `Conan`.
 
 ### Motivation
-I had to deal with a lot of boilerplate when creating new C++ projects, and wanted to have all of it predefined. Moreover, I needed a way to easily manage project files in `CMake` and `Visual Studio`. I struggled a lot with Visual Studio's CMake support and couldn't get to work adding new files under right directories and updating files lists in `CMakeLists.txt` files at the same time.
-So, I created a bunch of scripts which allow to quickly add/move/delete files from correct directories while keeping in synch both IDE's and CMake's files lists.
+I had to deal with a lot of boilerplate when creating new C++ projects, and wanted to have all of it predefined. Moreover, I needed a way to easily manage project files in `CMake` and `Visual Studio`. I struggled a lot with Visual Studio's CMake support and couldn't get to work adding new files under right directories and updating file lists in `CMakeLists.txt` files at the same time.
+So, I created a bunch of scripts which allow to quickly add/move/delete files from correct directories while keeping in synch both IDE's and CMake's file lists.
 
 
 ### How it works
-Project is split in two parts - CMake and Scripts.
+The project is split in two parts - CMake and Scripts.
 CMake part consists of all the `CMakeLists.txt` files, targets definitions, etc. Basically, the same stuff you would normally do for a CMake project.
 
-The center part of the scripts part are two files. The `scripts/config/scripts_config.yaml` and the `config/config.yaml` file. As their names imply, they contain scripts configuration.
+The center part of the scripts part are two files. The `scripts/config/scripts_config.yaml` and the `config/config.yaml` file. As their names imply, they contain scripts configurations.
 
 ### scripts_config.yaml
 This file contains absolute paths to the important files and directories for the scripts.
@@ -82,15 +82,15 @@ config_path:
 project_path:
 ```
 
- - `build_dir_path` - this is the absolute path to CMake build directory
- - `config_path` - absolute path to the `config.yaml` file. Note, that by default, this file is stored under the `*repository_main_dir*/config/config.yaml` path, but it can be placed in different place too
+ - `build_dir_path` - this is the absolute path to the CMake build directory
+ - `config_path` - absolute path to the `config.yaml` file. Note that by default, this file is stored under the `*repository_main_dir*/config/config.yaml` path, but it can be placed in a different place too
  - `project_path` - absolute path to the main directory of the repository. Eg. if you clone this repository into the `C:/Projects/BasicCppSetup`, you must set this variable to `C:/Projects/BasicCppSetup`. This is very important, because all [commands](#usage) will be executed relative to this path
 
 
 ### config.yaml
 This file contains the configuration of the project.
 
-Here's the example of this file:
+Here's an example of what it looks like:
 
 ```yaml
 conan:
@@ -114,7 +114,7 @@ targets:
 	 + `file_path` - defines path to the `conanfile.py` file
 	 + `build_dir` - path to the directory where all local, conan releated files will be placed
  - `targets` - this is the most important element of the file. It contains a list of all CMake targets whose files can be modified by the scripts. For each target you have to define the following:
-	 + `tests` - tell scripts if the target contains tests. This flag is used when creating new classes. If true, new file will be created from the [`test_template`](https://github.com/ComaszTyrulik/BasicCppSetupScripts/tree/main/config/test_template.h) and if false, new file will be created from the [`class_template`](https://github.com/ComaszTyrulik/BasicCppSetupScripts/tree/main/config/class_template.h)
+	 + `tests` - tells the script if the target contains tests. This flag is used when creating new classes. If true, new file will be created from the [`test_template`](https://github.com/ComaszTyrulik/BasicCppSetupScripts/tree/main/config/test_template.h) and if false, new file will be created from the [`class_template`](https://github.com/ComaszTyrulik/BasicCppSetupScripts/tree/main/config/class_template.h)
 	 + `namespace` - new classes and interfaces will be created within this namespace, unless you explicitly state otherwise when creating new files from a terminal. (See [commands](#usage))
 	 + `headers`
 		 * `base_dir` - base directory of all `*.h` files of this target
@@ -148,7 +148,7 @@ scriptsConfig['project_path']/targetConfig['sources']['base_dir']
 This repository comes with the predefined directories structure for your C++ project.
 They are used as follows:
 
- - `cmake/` - contains targets and general config files, and `functions.cmake` file, which contains definitions for custom functions
+ - `cmake/` - contains targets and general config files and `functions.cmake` file which contains definitions for custom functions
  - `conan/` - contains `conanfile.py` and automatically created `build` directory where all additional conan files are placed. In short, it contains all `conan` related data
  - `config/`
 	 + `config.yaml` - This file contains project configuration used by project scripts. More about it [here](#configyaml)
@@ -178,7 +178,7 @@ Additionally, it defines a few options that can be set via teminal.
 |`BUILD_TEST`|ON|Tells CMake whether test targets should be included in the project or not.|
 |`BUILD_UNIT_TESTS`|ON|Tells CMake whether unit test should be built. This flag is used by the `tests/CMakeLists.txt` file to determine which test targets include in the project.|
 |`BUILD_INTEGRATION_TESTS`|ON|The same as the `BUILD_UNIT_TESTS` but concerns integration tests.|
-|`GROUP_FILES_SEPARATE`|OFF|(Only tested with `Visual Studio`) source and header files can be presented in two ways in the `IDE`. They can all be groupped together and placed under the `Code/` directory or split into `Sources` and `Headers` directories. By default, all files are groupped together. **NOTE:** you may have to delete the `build/CMakeCache.txt` or recreate the entire `build` directory after changing the option in order for this option to work.|
+|`GROUP_FILES_SEPARATE`|OFF|(Only tested with `Visual Studio`) source and header files can be presented in two ways in the `IDE`. They can all be grouped together and placed under the `Code/` directory or split into `Sources` and `Headers` directories. By default, all files are grouped together. **NOTE:** you may have to delete the `build/CMakeCache.txt` or recreate the entire `build` directory after changing the option in order for this option to work.|
 
 ### Clang Format
 `BasicCppSetup` contains `.clang-format` file which is used to enforce coding standards.
@@ -370,9 +370,9 @@ Currently, the project has only been built and tested on:
 This section contains all required information to get you up and running.
 
 ### Prerequisites
-Project scripts use Python virtual environment and install all dependencies there. Because of this, the only required thing to install is [Python](https://www.python.org/downloads/). The minimum required version is `3.8`. When installing python, make sure to add it to your `PATH`.
+Project scripts use Python virtual environment and install all dependencies there. Because of this, the only required thing to install is [Python](https://www.python.org/downloads/). The minimum required version is `3.8`. When installing, make sure to add it to your `PATH`.
 
-To make sure python is added to `PATH`, open your favorite terminal and type
+To verify that python is added to `PATH`, open your favorite terminal and type:
 
 ```shell
 python --version
@@ -402,14 +402,14 @@ Once you have installed all prerequisites, you are good to go with project insta
 	```  
 This will download submodules, install python's virtual environment, install required `Conan` dependencies and configure `CMake` project. This is also the step where you can pass all `CMake` options you would like to set, for example `-DBUILD_TESTS=OFF`. They will be automatically forwarded to `CMake`.
 
-The command will ask you for the project base directory, project's config directory and project's build directory. If you run the command from your project's base directory, you can leave the aforementioned options empty and correct default ones will be used.
+The command will ask you for the project base directory, project's config directory and project's build directory. If you run the command from your project's base directory, you can leave the options empty and default ones will be used.
 
-> NOTE: You you run the script from explorer and not from the terminal, make sure to NOT close the `cmd` window and wait for the script to finish executing. The `cmd` window should close automatically once the script is done.
+> NOTE: If you run the script from explorer and not from the terminal, make sure to NOT close the `cmd` window and wait for the script to finish executing. The `cmd` window should close automatically once the script is done.
   
 This comman will also create the `run.bat` file in your project's base directory. You can use it to [run development scripts](#usage).
 
 ## Usage
-After [initializing the project](#installation), you should have the `run.*` (the extension depends on the platform you're on. I will assume `Windows` in the following section).
+After [initializing the project](#installation), you should have the `run.*` (the extension depends on the platform you're on. I will assume `Windows` in the following section) script in your repository's root directory.
 
 This script is an entry point for all project related commands. To see the list of available commands, run:
 
@@ -465,7 +465,7 @@ You can add/remove/move headers, sources and classes.
 
 The `headers` command allows you to modify only headers. It also allows you to create new interfaces (pure virtual classes)
 
-The `source` commans allows you to modify only sources.
+The `source` command allows you to modify only sources.
 
 The `class` command allows you to modify both headers and sources. It also uses files templates defined in [here](https://github.com/ComaszTyrulik/BasicCppSetupScripts/tree/main/config) to create new classes.
 
@@ -495,15 +495,15 @@ It will also modify `CMake` variables so that both `MyClass.h` and `MyClass.cpp`
 The `config` command is used to perform operation on project configuration. Currently, it can only be used to retrieve the list of targets defined in the `config.yaml` file.
 
 ### Conan Command
-This command install `Conan` dependencies and doesn't accept any arguments. You should use it whenever you modify the `conanfile.py` file.
+This command installs `Conan` dependencies and doesn't accept any arguments. You should use it whenever you modify the `conanfile.py` file.
 
 ### Cmake Command
 The `cmake` command is used to both configure `CMake` project and to build all targets.
 
 Command accepts one, **optional** argument which can be one of the two:
 
- - configure - regenerates cmake files. It's the `cmake` command you run everytime, you change something in your `CMakeLists.txt` files.
- - build - build all targets based on the configuration. This is an equvelant of running `cmake --build build`
+ - configure - regenerates cmake files. It's the `cmake` command you run whenever you change something in your `CMakeLists.txt` files. This is an equivalent of running `cmake -S . -B build`
+ - build - build all targets based on the configuration. This is an equivalent of running `cmake --build build`
  
 If no argument is provided, the command proceeds as if the `configure` argument was passed.
 
