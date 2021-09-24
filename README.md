@@ -114,7 +114,7 @@ targets:
 	 + `file_path` - defines path to the `conanfile.py` file
 	 + `build_dir` - path to the directory where all local, conan releated files will be placed
  - `targets` - this is the most important element of the file. It contains a list of all CMake targets whose files can be modified by the scripts. For each target you have to define the following:
-	 + `tests` - tell scripts if the target contains tests. This flag is used when creating new classes. If true, new file will be created from the [`test_template`](scripts/config/test_template.h) and if false, new file will be created from the [`class_template`](scripts/config/class_template.h)
+	 + `tests` - tell scripts if the target contains tests. This flag is used when creating new classes. If true, new file will be created from the [`test_template`](https://github.com/ComaszTyrulik/BasicCppSetupScripts/tree/main/config/test_template.h) and if false, new file will be created from the [`class_template`](https://github.com/ComaszTyrulik/BasicCppSetupScripts/tree/main/config/class_template.h)
 	 + `namespace` - new classes and interfaces will be created within this namespace, unless you explicitly state otherwise when creating new files from a terminal. (See [commands](#usage))
 	 + `headers`
 		 * `base_dir` - base directory of all `*.h` files of this target
@@ -182,7 +182,7 @@ Additionally, it defines a few options that can be set via teminal.
 
 ### Clang Format
 `BasicCppSetup` contains `.clang-format` file which is used to enforce coding standards.
-Here's an example of `BasicCppSetup` code format:
+Here's an example of `BasicCppSetup` code formatting:
 
 ```c++
 #include "LocalInclude1.h"
@@ -467,7 +467,7 @@ The `headers` command allows you to modify only headers. It also allows you to c
 
 The `source` commans allows you to modify only sources.
 
-The `class` command allows you to modify both headers and sources. It also uses files templates defined in [here](scripts/config/) to create new classes.
+The `class` command allows you to modify both headers and sources. It also uses files templates defined in [here](https://github.com/ComaszTyrulik/BasicCppSetupScripts/tree/main/config) to create new classes.
 
 > NOTE: This command accepts `<target>` as its first argument. This must be one of the targets defined in the [`config/config.yaml`](#configyaml) file.
 
